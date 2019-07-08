@@ -12,6 +12,7 @@ WORKDIR /root/dirac_ui
 RUN wget -np -O dirac-install https://raw.githubusercontent.com/DIRACGrid/DIRAC/integration/Core/scripts/dirac-install.py
 RUN chmod u+x dirac-install
 RUN ./dirac-install -r $dirac_version -i $python_version -g $lcgtools_version
+RUN rm -f dirac-install
 
 RUN --mount=type=secret,id=usercert,dst=/root/.globus/usercert.pem,readonly --mount=type=secret,id=userkey,dst=/root/.globus/userkey.pem,readonly . bashrc && dirac-proxy-init -x
 RUN . bashrc && dirac-configure -F -S GridPP -C dips://dirac01.grid.hep.ph.ic.ac.uk:9135/Configuration/Server -I
