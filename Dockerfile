@@ -4,6 +4,7 @@ ARG dirac_version=v6r21p7
 ARG lcgtools_version=v14r1
 ARG python_version=27
 
+RUN yum install -y wget
 RUN mkdir -p /root/.globus
 RUN mkdir -p /root/dirac_ui
 
@@ -14,7 +15,6 @@ RUN chmod u+x dirac-install
 RUN ./dirac-install -r $dirac_version -i $python_version -g $lcgtools_version
 RUN rm -f dirac-install
 
-RUN --mount=type=secret,id=usercert,dst=/root/.globus/usercert.pem,readonly --mount=type=secret,id=userkey,dst=/root/.globus/userkey.pem,readonly . bashrc && dirac-proxy-init -x
-RUN . bashrc && dirac-configure -F -S GridPP -C dips://dirac01.grid.hep.ph.ic.ac.uk:9135/Configuration/Server -I
+RUN --mount=type=secret,id=proxy,dst=/tmp/x509up_u0 . /root/dirac_ui/bashrc && dirac-configure -F -S GridPP -C dips://dirac01.grid.hep.ph.ic.ac.uk:9135/Configuration/Server -I
 
 CMD ["/bin/bash", "-l"]
