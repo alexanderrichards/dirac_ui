@@ -8,7 +8,7 @@ RUN yum install -y wget
 
 COPY bootstrap.sh /root
 RUN mkdir -p /home/dirac_user/dirac_ui
-COPY bashrc /home/dirac_user/.bashrc
+COPY bash_profile /home/dirac_user/.bash_profile
 
 WORKDIR /home/dirac_user/dirac_ui
 
