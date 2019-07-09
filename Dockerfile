@@ -7,7 +7,7 @@ ARG python_version=27
 RUN yum install -y wget
 
 RUN mkdir -p /root/dirac_ui
-COPY bash_profile /root/bash_profile
+COPY startup.sh /root/startup.sh
 
 WORKDIR /root/dirac_ui
 
@@ -19,4 +19,4 @@ RUN rm -f dirac-install
 
 WORKDIR /root
 
-CMD ["/bin/bash", "--init-file", "/root/bash_profile"]
+CMD ["/bin/bash", "--init-file", "/root/startup.sh"]
