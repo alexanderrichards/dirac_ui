@@ -1,0 +1,27 @@
+
+name: CI Build
+
+on: [pull_request]
+
+jobs:
+  build:
+    name: Build Image
+    runs-on: ubuntu-latest
+    container: centos:7
+    steps:
+    - uses: actions/checkout@v1
+    - name: Install Deploy certificate
+      env:
+        DEPLOY_CERT: ${{ secrets.Deploy_UserCert }}
+        DEPLOY_KEY: ${{ secrets.Deploy_UserKey }}
+      run: |
+        mkdir ~/.globus
+        echo "$DEPLOY_CERT" > ~/.globus/usercert.pem
+        echo "$DEPLOY_KEY" > ~/.globus/userkey.pem
+        chmod 644 ~/.globus/usercert.pem
+        chmod 400 ~/.globus/userkey.pem
+    - name: Build Image
+      run: |
+    - name: Install DIRAC UI
+      run: |
+        DOCKER_BUILDKIT=1 docker build --progress=plain --secret id=proxy,src=/tmp/x509up_u$ID --tag="alexanderrichards/dirac_ui:latest" .
