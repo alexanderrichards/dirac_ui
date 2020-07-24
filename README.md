@@ -11,3 +11,5 @@ If your using udocker to run in userspace, this becomes:
 ```bash
 udocker run --volume=<grid cert/key dir>:/root/.globus alexanderrichards/dirac_ui
 ```
+
+![Image Usage Gif](examples/image_usage.gif)
