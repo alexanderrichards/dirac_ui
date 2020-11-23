@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.0-experimental
 FROM centos:7
-ARG dirac_version=v6r22p26
+ARG dirac_version=v7r1p17
 
 RUN yum install -y wget
 RUN mkdir /root/dirac_ui
@@ -8,7 +8,7 @@ RUN wget -np -O /root/dirac_ui/dirac-install https://raw.githubusercontent.com/D
 RUN chmod u+x /root/dirac_ui/dirac-install
 
 WORKDIR /root/dirac_ui
-RUN /root/dirac_ui/dirac-install -r $dirac_version -i 27 -g v14r1
+RUN /root/dirac_ui/dirac-install -r $dirac_version
 RUN rm -f /root/dirac_ui/dirac-install
 RUN --mount=type=secret,id=proxy,dst=/tmp/x509up_u0 . /root/dirac_ui/bashrc && dirac-configure -F -S GridPP -C dips://dirac01.grid.hep.ph.ic.ac.uk:9135/Configuration/Server -I
 
