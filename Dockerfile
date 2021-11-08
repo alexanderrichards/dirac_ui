@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.0-experimental
 FROM centos:7
-ARG dirac_version=v7r1p26
+ARG dirac_version=v7r1p45
 
 RUN yum install -y wget
 RUN mkdir /root/dirac_ui
