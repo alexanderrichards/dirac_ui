@@ -8,10 +8,30 @@ on:
 
 jobs:
 
-  build:
-
+  generate-proxy:
     runs-on: ubuntu-latest
-
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Build
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          tags: alexanderrichards/dirac_env:latest
+          secrets: |
+            "usercert=${{ secrets.usercert }}"
+            "userkey=${{ secrets.userkey }}"
+      - name: create proxy
+        shell: bash
+        run: docker run alexanderrichards/dirac_env > 
+  build:
+    needs: generate-proxy
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -25,5 +45,5 @@ jobs:
           context: .
           platforms: linux/amd64,linux/arm64
           tags: alexanderrichards/dirac_ui:latest
-          secrets: |
-            "github_token=${{ secrets.GITHUB_TOKEN }}"      
+          secret-files: |
+            "MY_SECRET=./secret.txt"    
