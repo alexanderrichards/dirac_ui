@@ -1,4 +1,4 @@
-[![Docker Build Status](https://img.shields.io/docker/build/alexanderrichards/dirac_ui.svg)](https://hub.docker.com/r/alexanderrichards/dirac_ui/builds)
+[![CI build test workflow](https://github.com/alexanderrichards/dirac_ui/actions/workflows/build-test.yml/badge.svg)](https://github.com/alexanderrichards/dirac_ui/actions/workflows/build-test.yml)
 
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/alexanderrichards/dirac_ui?logo=docker&sort=semver)
 # dirac_ui
