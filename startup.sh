@@ -9,7 +9,7 @@ dirac-proxy-init -x -N
 dirac-configure -F -S ${setupname} -C ${configurl} -I
 echo "Configured OK."
 
-read -p 'Creating grid proxy for which DIRAC group (i.e. <vo>_user) [dirac_user]: ' vo
-vo=${vo:-'dirac_user'}
+read -p 'Creating grid proxy for which DIRAC group (i.e. <vo>_user) [gridpp_user]: ' vo
+vo=${vo:-'gridpp_user'}
 dirac-proxy-init -g $vo -M --Cert /root/.globus/usercert.pem --Key /root/.globus/userkey.pem
 echo "proxy created OK."
