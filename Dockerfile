@@ -1,7 +1,7 @@
 # syntax = docker/dockerfile:1
 
 FROM centos:7
-ARG dirac_version=7.3.26
+ARG dirac_version
 
 RUN mkdir /root/dirac_ui
 WORKDIR /root/dirac_ui
