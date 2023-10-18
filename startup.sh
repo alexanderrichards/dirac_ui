@@ -11,5 +11,5 @@ echo "Configured OK."
 
 read -p 'Creating grid proxy for which DIRAC group (i.e. <vo>_user) [dirac_user]: ' vo
 vo=${vo:-'dirac_user'}
-dirac-proxy-init -g $vo -M -U --Cert /root/.globus/usercert.pem --Key /root/.globus/userkey.pem
+dirac-proxy-init -g $vo -M --Cert /root/.globus/usercert.pem --Key /root/.globus/userkey.pem
 echo "proxy created OK."
