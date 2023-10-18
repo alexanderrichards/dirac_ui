@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: CD release build and publish
 
 on:
   release:
@@ -24,7 +24,7 @@ jobs:
         with:
 #          push: true
           context: . 
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           tags: alexanderrichards/dirac_ui:${{ github.event.release.tag_name }},alexanderrichards/dirac_ui:latest
           build-args: |
             dirac_version=${{ github.event.release.tag_name }}
